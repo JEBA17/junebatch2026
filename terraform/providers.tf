@@ -11,7 +11,7 @@ terraform {
   }
 
   backend "s3" {
-    bucket = "test-state-bucket-praf2"
+    bucket = "test-state-bucket-praf3"
     key    = "devjune2026.tfstate"
     region = "eu-north-1"
   }

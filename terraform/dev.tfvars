@@ -1,4 +1,4 @@
-bucket_name = "test-state-bucket-praf3"
+bucket_name = "test-state-bucket-praf4"
 region = "us-east-1"
 environment = "dev"
 cidr_block = "10.0.0.0/16"
