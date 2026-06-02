@@ -35,4 +35,26 @@ jobs:
       - name: Verify Terraform Installation
         run: terraform version
 
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.TERR_YAML }}
+          aws-secret-access-key: ${{ secrets.terr123 }}
+          aws-region: eu-north-1
+
+      - name: Verify AWS Authentication
+        run: aws sts get-caller-identity
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Plan
+        run: terraform plan 
+
+      - name: Terraform Apply
+        run: terraform apply 
+
         
