@@ -5,11 +5,7 @@ module "s3bucket" {
   environment   = var.environment
 }
 
-module "vpc" {
-  source = "./vpc"
-  cidr_block = var.cidr_block
-  
-}
+
 
 module "subnet" {
   depends_on = [ module.vpc ]
@@ -19,11 +15,15 @@ module "subnet" {
   
 }
 
-# module "ec2" {
-#   source = "./ec2"
-#   bucket_name = module.s3bucket.bucket_name
-#   vpc_id = module.vpc.vpc
-#   subnet_id = module.subnet.subnet_id
- 
-# }
+module "vpc" {
+  source = "./vpc"
+  cidr_block = var.cidr_block
+  
+}
+
+module "ec2" {
+   source = "./ec2"
+  subnet_id = module.subnet.aws_subnet
+   ami_id = data.aws_ami.ubuntu.id
+}
 
