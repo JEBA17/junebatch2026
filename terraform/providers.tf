@@ -11,9 +11,9 @@ terraform {
   }
 
   backend "s3" {
-    bucket = "my-terraform-state-1991"
+    bucket = "test-state-bucket-praf3"
     key    = "devjune2026.tfstate"
-    region = "us-east-1"
+    region = "eu-north-1"
   }
 }
 

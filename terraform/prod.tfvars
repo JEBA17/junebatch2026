@@ -1,3 +1,3 @@
-bucket_name = "jatinbhalla199ewew1"
-region = "us-east-1"
+bucket_name = "test-state-bucket-praf2"
+region = "eu-north-1"
 environment = "prod"
