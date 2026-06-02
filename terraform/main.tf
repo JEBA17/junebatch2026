@@ -1,19 +1,29 @@
-
-
-resource "aws_s3_bucket" "s3bucket" {
-  bucket = var.bucket_name
-  tags = {
-    region      = var.region
-    Environment = var.environment
-  }
+module "s3bucket" {
+  source = "./s3bucket"
+  bucket_name = var.bucket_name
+  region      = var.region
+  environment   = var.environment
 }
 
-# resource "aws_ec2_instance" "ec2instance" {
-#   ami           = "ami-0c55b159cbfafe1f0"
-#   instance_type = "t2.micro"
-#   tags = {
-#     Name        = "My EC2 Instance"
-#     Environment = "prod"
-#   }
+module "vpc" {
+  source = "./vpc"
+  cidr_block = var.cidr_block
+  
+}
+
+module "subnet" {
+  depends_on = [ module.vpc ]
+  source = "./subnet"
+  vpc_id = module.vpc.vpc_id
+  cidr_block = var.subnet_cidr_block
+  
+}
+
+# module "ec2" {
+#   source = "./ec2"
+#   bucket_name = module.s3bucket.bucket_name
+#   vpc_id = module.vpc.vpc
+#   subnet_id = module.subnet.subnet_id
+ 
 # }
 
