@@ -13,7 +13,7 @@ terraform {
   backend "s3" {
     bucket = "test-state-bucket-praf3"
     key    = "devjune2026.tfstate"
-    region = "eu-east-1"
+    region = "us-east-1"
   }
 }
 
