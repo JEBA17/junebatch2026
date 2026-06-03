@@ -30,6 +30,6 @@ module "ec2" {
 module "ecr" {
   source = "./ecr"
 
-  ecr_repository_name = "praf-rct-ecr-repo"
+  ecr_repository_name = var.ecr_repository_name
 }
 
