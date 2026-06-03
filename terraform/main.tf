@@ -27,3 +27,9 @@ module "ec2" {
    ami_id = data.aws_ami.ubuntu.id
 }
 
+module "ecr" {
+  source = "./ecr"
+
+  ecr_repository_name = "praf-rct-ecr-repo"
+}
+
