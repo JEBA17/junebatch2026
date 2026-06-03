@@ -7,13 +7,13 @@ module "s3bucket" {
 
 
 
-module "subnet" {
-  depends_on = [ module.vpc ]
-  source = "./subnet"
-  vpc_id = module.vpc.vpc_id
-  cidr_block = var.subnet_cidr_block
+# module "subnet" {
+#   depends_on = [ module.vpc ]
+#   source = "./subnet"
+#   vpc_id = module.vpc.vpc_id
+#   cidr_block = var.subnet_cidr_block
   
-}
+# }
 
 # module "vpc" {
 #   source = "./vpc"
