@@ -15,17 +15,17 @@ module "subnet" {
   
 }
 
-module "vpc" {
-  source = "./vpc"
-  cidr_block = var.cidr_block
+# module "vpc" {
+#   source = "./vpc"
+#   cidr_block = var.cidr_block
   
-}
+# }
 
-module "ec2" {
-   source = "./ec2"
-  subnet_id = module.subnet.aws_subnet
-   ami_id = data.aws_ami.ubuntu.id
-}
+# module "ec2" {
+#    source = "./ec2"
+#   subnet_id = module.subnet.aws_subnet
+#    ami_id = data.aws_ami.ubuntu.id
+# }
 
 module "ecr" {
   source = "./ecr"
