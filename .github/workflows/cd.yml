@@ -1,0 +1,46 @@
+name: CD
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Verify Runner
+        run: |
+          echo "Runner is working"
+          hostname
+          pwd
+
+      - name: Verify AWS Access
+        run: |
+          aws sts get-caller-identity
+
+      - name: Configure Kubeconfig
+        run: |
+          aws eks update-kubeconfig \
+            --region us-east-1 \
+            --name demo-eks-cluster1
+
+      - name: Verify Cluster Access
+        run: |
+          kubectl get nodes
+
+      - name: Verify Helm
+        run: |
+          helm version
+
+      - name: Deploy Helm Chart
+        run: |
+          helm upgrade --install java-web-release ./helm \
+            --namespace java-web-namespace \
+            --create-namespace
+
+      - name: Verify Deployment
+        run: |
+          kubectl get pods -n java-web-namespace
